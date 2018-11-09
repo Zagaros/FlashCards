@@ -1,4 +1,4 @@
-class Theme {
+class Deck {
     constructor(title) {
         this.title = title;
         this.cards = [];
