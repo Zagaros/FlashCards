@@ -42,11 +42,12 @@ class Card {
         this.question = question;
         this.answer = answer;
         this.text = this.question;
-        this.showAns = false;
+
+        this.showAnswer = false;
     }
     show(){
-        if(this.showAns){
-            this.text = this.answer;
+        if(this.showAnswer){
+            this.text = this.ans;
         }
         return this.text;
     }
