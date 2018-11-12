@@ -1,9 +1,10 @@
 class Deck {
-    constructor(title) {
+    constructor(title, id) {
         this.title = title;
         this.cards = [];
         this.completed = [];
         this.currentCard = 0;
+        this.id = id;
     }
     getCard(){
         return this.cards[this.currentCard]
@@ -52,3 +53,5 @@ class Card {
         return this.text;
     }
 }
+
+module.exports = {Deck, Card};
