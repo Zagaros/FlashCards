@@ -39,9 +39,10 @@ class Deck {
 }
 class Card {
     constructor(question, answer) {
-        this.que = question;
-        this.ans = answer;
-        this.text = this.que;
+        this.question = question;
+        this.answer = answer;
+        this.text = this.question;
+
         this.showAnswer = false;
     }
     show(){
