@@ -15,6 +15,12 @@ app.get("/" , (req, res) => {
     res.render("index", {
         Saved
     });
+
+});
+app.get("/hej", (req, res) => {
+    res.render("card.ejs", {
+        theme: "theme",
+    });
 });
 
 app.use('/public', express.static('public'));
