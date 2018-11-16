@@ -7,6 +7,9 @@ const Saved = new Saver();
 //testing
     for(let i = 0; i < 5; i++){
         Saved.decks.push(new Deck(i,i));
+        for(let j = 0; j < 5; j++){
+            Saved.decks[i].addCard("ÄR APOR FINA?" + j, "JA DE ÄR DOM" + j);
+        }
     }
 //end Testing
 app.set("view engine", "ejs");

@@ -9,6 +9,9 @@ class Deck {
     getCard(){
         return this.cards[this.currentCard]
     }
+    addCard(question, answer){
+        this.cards.push(question, answer)
+    }
     answer(ans){
         switch (ans) {
             case false:
