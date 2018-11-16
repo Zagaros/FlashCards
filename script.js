@@ -10,7 +10,7 @@ class Deck {
         return this.cards[this.currentCard]
     }
     addCard(question, answer){
-        this.cards.push(question, answer)
+        this.cards.push(new Card(question, answer))
     }
     answer(ans){
         switch (ans) {

@@ -4,7 +4,7 @@ class Saver {
     }
     findById(id){
         for(let i = 0; i < this.decks.length; i++){
-            if(this.decks[id] == id){
+            if(this.decks[i].id == id){
                 return this.decks[i];
             }
         }

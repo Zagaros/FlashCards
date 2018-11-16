@@ -6,9 +6,9 @@ const Saved = new Saver();
 
 //testing
     for(let i = 0; i < 5; i++){
-        Saved.decks.push(new Deck(i,i));
+        Saved.decks.push(new Deck("hej",i));
         for(let j = 0; j < 5; j++){
-            Saved.decks[i].addCard("ÄR APOR FINA?" + j, "JA DE ÄR DOM" + j);
+            Saved.decks[i].addCard("ÄR APOR FINA?" + i, "JA DE ÄR DOM" + j);
         }
     }
 //end Testing
@@ -20,14 +20,14 @@ app.get("/" , (req, res) => {
     });
 
 });
-app.get("theme/:title/:id", (req, res) => {
+app.get("/theme/:title/:id", (req, res) => {
     let id = req.params.id;
     let theme = Saved.findById(id);
     res.render("card.ejs", {theme});
 });
 app.get("/hej", (req, res) => {
     res.render("card.ejs", {
-        theme: "theme",
+        theme: "theme", 
     });
 });
 
