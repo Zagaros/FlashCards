@@ -6,7 +6,7 @@ const Saved = new Saver();
 
 //testing
     for(let i = 0; i < 5; i++){
-        Saved.decks.push(new Deck(i));
+        Saved.decks.push(new Deck(i,i));
     }
 //end Testing
 app.set("view engine", "ejs");
@@ -16,6 +16,11 @@ app.get("/" , (req, res) => {
         Saved
     });
 
+});
+app.get("theme/:title/:id", (req, res) => {
+    let id = req.params.id;
+    let theme = Saved.findById(id);
+    res.render("card.ejs", {theme});
 });
 app.get("/hej", (req, res) => {
     res.render("card.ejs", {
