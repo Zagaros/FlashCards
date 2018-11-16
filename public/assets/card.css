@@ -1,0 +1,17 @@
+h1, h3 {
+    text-align: center;
+}
+
+#wrongBtn {
+    float:left;
+}
+
+rightBtn {
+    float: right;
+}
+
+#currentCard {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+}
