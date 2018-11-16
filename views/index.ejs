@@ -10,4 +10,7 @@
 </head>
 <body>
     <h1>Hello World</h1>
+    <% for(let i = 0; i < Saved.decks.length; i++){ %>
+        <li href = "card.ejs"><%= Saved.decks[i].title %></li>
+    <% } %>
 </body>
