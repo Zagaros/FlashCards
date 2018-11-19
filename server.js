@@ -25,11 +25,6 @@ app.get("/theme/:title/:id", (req, res) => {
     let theme = Saved.findById(id);
     res.render("card.ejs", {theme});
 });
-app.get("/hej", (req, res) => {
-    res.render("card.ejs", {
-        theme: "theme", 
-    });
-});
 
 app.use('/public', express.static('public'));
 app.listen(3000, () => console.log("listening on port 3000"));
