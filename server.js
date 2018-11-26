@@ -23,8 +23,27 @@ app.get("/" , (req, res) => {
 app.get("/theme/:title/:id", (req, res) => {
     let id = req.params.id;
     let theme = Saved.findById(id);
+<<<<<<< HEAD
     console.log({id, theme});
     res.render("card.ejs", {theme});
+=======
+    let card = req.query.valueCard;
+    res.render("card", {theme});
+});
+app.get("/edit/:title/:id", (req, res) => {
+    let id = req.params.id;
+    let theme = Saved.findById(id);
+    let question = req.query.Question;
+    let answer = req.query.Answer;
+    if(question != undefined && answer != undefined){
+        theme.addCard(question, answer);
+    };
+    res.render("editDeck", {theme})
+});
+app.get("/theme/makeDeck", (req, res) => {
+
+    res.render("makeDeck");
+>>>>>>> 0c7149b19740283af9b1087d08f415fe79e11499
 });
 
 app.get("/answer", (req, res) => {
