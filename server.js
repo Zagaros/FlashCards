@@ -23,7 +23,22 @@ app.get("/" , (req, res) => {
 app.get("/theme/:title/:id", (req, res) => {
     let id = req.params.id;
     let theme = Saved.findById(id);
-    res.render("card.ejs", {theme});
+    let card = req.query.valueCard;
+    res.render("card", {theme});
+});
+app.get("/edit/:title/:id", (req, res) => {
+    let id = req.params.id;
+    let theme = Saved.findById(id);
+    let question = req.query.Question;
+    let answer = req.query.Answer;
+    if(question != undefined && answer != undefined){
+        theme.addCard(question, answer);
+    };
+    res.render("editDeck", {theme})
+});
+app.get("/theme/makeDeck", (req, res) => {
+
+    res.render("makeDeck");
 });
 
 app.use('/public', express.static('public'));
