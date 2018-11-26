@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const Saver = require("./saver");
-const {Deck, Card} = require("./script");
+const {Deck, Card} = require("./public/script");
 const Saved = new Saver();
 
 //testing
@@ -23,6 +23,10 @@ app.get("/" , (req, res) => {
 app.get("/theme/:title/:id", (req, res) => {
     let id = req.params.id;
     let theme = Saved.findById(id);
+<<<<<<< HEAD
+    console.log({id, theme});
+    res.render("card.ejs", {theme});
+=======
     let card = req.query.valueCard;
     res.render("card", {theme});
 });
@@ -39,6 +43,15 @@ app.get("/edit/:title/:id", (req, res) => {
 app.get("/theme/makeDeck", (req, res) => {
 
     res.render("makeDeck");
+>>>>>>> 0c7149b19740283af9b1087d08f415fe79e11499
+});
+
+app.get("/answer", (req, res) => {
+    //res.send("got info: " + JSON.stringify(req.query))
+    let cardId = req.query.Card;
+    let deckId = req.query.deck;
+    let theme = Saved.findById(deckId);
+    res.render("card.ejs", {theme})
 });
 
 app.use('/public', express.static('public'));
