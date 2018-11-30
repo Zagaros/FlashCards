@@ -23,11 +23,18 @@ app.get("/" , (req, res) => {
 app.get("/theme/:title/:id", (req, res) => {
     let id = req.params.id;
     let theme = Saved.findById(id);
-<<<<<<< HEAD
-    console.log({id, theme});
-    res.render("card.ejs", {theme});
-=======
     let card = req.query.valueCard;
+    let answer = req.query.answer;
+    if(answer != undefined){
+        if(answer === "right"){
+            theme.completed.push(theme.cards[theme.currentCard]);
+            theme.cards.splice(theme.currentCard, 1)
+            theme.currentCard = theme.nextCard();
+        } else if(answer === "wrong"){
+            theme.currentCard = theme.nextCard();
+        }
+    }
+    console.log("kort", theme.currentCard)
     res.render("card", {theme});
 });
 app.get("/edit/:title/:id", (req, res) => {
@@ -43,7 +50,6 @@ app.get("/edit/:title/:id", (req, res) => {
 app.get("/theme/makeDeck", (req, res) => {
 
     res.render("makeDeck");
->>>>>>> 0c7149b19740283af9b1087d08f415fe79e11499
 });
 
 app.get("/answer", (req, res) => {
