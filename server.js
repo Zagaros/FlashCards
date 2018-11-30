@@ -8,7 +8,7 @@ const Saved = new Saver();
     for(let i = 0; i < 5; i++){
         Saved.decks.push(new Deck("hej",i));
         for(let j = 0; j < 5; j++){
-            Saved.decks[i].addCard("ÄR APOR FINA?" + i, "JA DE ÄR DOM" + j);
+            Saved.decks[i].addCard("ÄR APOR FINA?" + j, "JA DE ÄR DOM" + j);
         }
     }
 //end Testing
@@ -25,16 +25,27 @@ app.get("/theme/:title/:id", (req, res) => {
     let theme = Saved.findById(id);
     let card = req.query.valueCard;
     let answer = req.query.answer;
+
     if(answer != undefined){
         if(answer === "right"){
             theme.completed.push(theme.cards[theme.currentCard]);
-            theme.cards.splice(theme.currentCard, 1)
-            theme.currentCard = theme.nextCard();
+            theme.cards.splice(theme.currentCard, 1) 
+            
+            if(theme.currentCard >= theme.cards.length){
+                theme.currentCard = 0;
+            }
         } else if(answer === "wrong"){
             theme.currentCard = theme.nextCard();
+            if(theme.currentCard >= theme.cards.length){
+                theme.currentCard = 0;
+                console.log("Nu är jag större")
+            }
         }
     }
+    answer = undefined;
     console.log("kort", theme.currentCard)
+    console.log("längd ", theme.cards.length)
+    console.log(theme.cards.length)
     res.render("card", {theme});
 });
 app.get("/edit/:title/:id", (req, res) => {
