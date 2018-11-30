@@ -29,13 +29,13 @@
     <h3>Good luck!</h3>
 
     <div id="container">
-        <form action="/answer" method="GET">
+        <form action=/theme/<%=theme.title%>/<%=theme.id%> method="GET">
             <input type=hidden name=deck value="<%=theme.id%>">
             <input type=hidden name=card value="<%=theme.currentCard%>">
             <input type=hidden name=answer value=wrong>
             <button id="wrongBtn" type="submit">Wrong</button>
         </form>
-        <form action="/answer" method="GET">
+        <form action=/theme/<%=theme.title%>/<%=theme.id%> method="GET">
             <input type=hidden name=deck value="<%=theme.id%>">
             <input type=hidden name=card value="<%=theme.currentCard%>">
             <input type=hidden name=answer value=right>
