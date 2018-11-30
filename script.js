@@ -1,3 +1,8 @@
+const fs = require("fs");
+const util = require("util");
+let readFile = util.promisify(fs.readFile)
+let writeFile = util.promisify(fs.writeFile)
+
 class Deck {
     constructor(title, id) {
         this.title = title;
@@ -10,7 +15,8 @@ class Deck {
         return this.cards[this.currentCard]
     }
     addCard(question, answer){
-        this.cards.push(new Card(question, answer))
+        this.cards.push(new Card(question, answer));
+        this.save("themes.txt");
     }
     answer(ans){
         switch (ans) {
@@ -39,6 +45,11 @@ class Deck {
             [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
+    }
+    async save(filnamn = "themes.txt", callback = () => {}){
+        let saveThemes = JSON.stringify(this.decks);
+        await writeFile(filnamn, saveThemes, "utf8")
+        if(callback) callback();
     }
 }
 class Card {
