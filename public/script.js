@@ -1,5 +1,11 @@
+
+
 class Deck {
-    constructor(title, id) {
+    constructor(title, id, saver) {
+        Object.defineProperty(this, "saver", {
+            enumerable: false,
+            value: saver
+        });
         this.title = title;
         this.cards = [];
         this.completed = [];
@@ -18,6 +24,7 @@ class Deck {
     }
     addCard(question, answer){
         this.cards.push(new Card(question, answer))
+        this.saver.save("themes.txt");
     }
     answer(ans){
         switch (ans) {
