@@ -14,6 +14,7 @@ async function main() {
 
     //end Testing
     app.set("view engine", "ejs");
+    app.use(express.urlencoded({extended: true}));
 
     app.get("/" , (req, res) => {
         res.render("index", {
@@ -21,23 +22,7 @@ async function main() {
         });
 
     });
-    app.get("/theme/:title/:id", (req, res) => {
-        let id = req.params.id;
-        let theme = Saved.findById(id);
-        let card = req.query.valueCard;
-        let answer = req.query.answer;
-        if(answer != undefined){
-            if(answer === "right"){
-                theme.completed.push(theme.cards[theme.currentCard]);
-                theme.cards.splice(theme.currentCard, 1)
-                theme.currentCard = theme.nextCard();
-            } else if(answer === "wrong"){
-                theme.currentCard = theme.nextCard();
-            }
-        }
-        console.log("kort", theme.currentCard)
-        res.render("card", {theme});
-    });
+
     app.get("/edit/:title/:id", (req, res) => {
         let id = req.params.id;
         let theme = Saved.findById(id);
@@ -49,7 +34,34 @@ async function main() {
 
         res.render("editDeck", {theme})
     });
-    app.get("/theme/makeDeck", (req, res) => {
+
+
+
+app.all("/theme/:title/:id", (req, res) => {
+    let id = req.params.id;
+    let theme = Saved.findById(id);
+    let card = req.body.valueCard;
+    let answer = req.body.answer;
+
+    if(!theme.cards.length == 0){
+        if(answer === "right"){
+            theme.completed.push(theme.cards[theme.currentCard]);
+            theme.cards.splice(theme.currentCard, 1) 
+            
+            if(theme.currentCard >= theme.cards.length){
+                theme.currentCard = 0;
+            }
+        } else if(answer === "wrong"){
+            theme.currentCard = theme.nextCard();
+            if(theme.currentCard >= theme.cards.length){
+                theme.currentCard = 0;
+            }
+        }
+    } 
+    
+    res.render("card", {theme});
+});
+app.get("/theme/makeDeck", (req, res) => {
 
         res.render("makeDeck");
     });

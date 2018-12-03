@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Practice</title>
+    <title>Practice <% theme.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/public/assets/card.css" />
     <script src="/public/script.js"></script>
@@ -13,6 +13,17 @@
         function showAnswer(){
             document.getElementById("currentCard").innerHTML = answer;
         } 
+<<<<<<< HEAD
+
+        function youWin(){
+            document.getElementById("container").style.display = "none";
+            let para = document.createElement("h3");
+        }
+        <% if(theme.cards.length < 1){ %>
+            youWin();
+       <% } %>
+=======
+>>>>>>> e30ae20adbaa7236c5c3b65c6f018f46b05279cf
     </script>
     <style>
   
