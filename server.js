@@ -4,6 +4,8 @@ const Saver = require("./saver");
 const {Deck, Card} = require("./public/script");
 const Saved = new Saver();
 
+app.use(express.urlencoded({extended: true}));
+
 //testing
     for(let i = 0; i < 5; i++){
         Saved.decks.push(new Deck("hej",i));
@@ -20,13 +22,13 @@ app.get("/" , (req, res) => {
     });
 
 });
-app.get("/theme/:title/:id", (req, res) => {
+app.all("/theme/:title/:id", (req, res) => {
     let id = req.params.id;
     let theme = Saved.findById(id);
-    let card = req.query.valueCard;
-    let answer = req.query.answer;
+    let card = req.body.valueCard;
+    let answer = req.body.answer;
 
-    if(answer != undefined){
+    if(!theme.cards.length == 0){
         if(answer === "right"){
             theme.completed.push(theme.cards[theme.currentCard]);
             theme.cards.splice(theme.currentCard, 1) 
@@ -38,14 +40,10 @@ app.get("/theme/:title/:id", (req, res) => {
             theme.currentCard = theme.nextCard();
             if(theme.currentCard >= theme.cards.length){
                 theme.currentCard = 0;
-                console.log("Nu är jag större")
             }
         }
-    }
-    answer = undefined;
-    console.log("kort", theme.currentCard)
-    console.log("längd ", theme.cards.length)
-    console.log(theme.cards.length)
+    } 
+    
     res.render("card", {theme});
 });
 app.get("/edit/:title/:id", (req, res) => {
