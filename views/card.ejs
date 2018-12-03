@@ -9,15 +9,12 @@
     <script src="/public/script.js"></script>
 
     <script>
-        <% console.log(theme.currentCard) %>
         /*
         <%- JSON.stringify(theme) %>
-        */ 
-        let answer = "<%= theme.cards[theme.currentCard].answer %>";
+        */
         function showAnswer(){
             document.getElementById("currentCard").innerHTML = answer;
         } 
-        <% let nextCard = theme.nextCard(); %>
     </script>
     <style>
   
