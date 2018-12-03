@@ -9,10 +9,6 @@
     <script src="/public/script.js"></script>
 
     <script>
-        <% console.log(theme.currentCard) %>
-        /*
-        <%- JSON.stringify(theme) %>
-        */ 
         let answer = "<%= theme.cards[theme.currentCard].answer %>";
         function showAnswer(){
             document.getElementById("currentCard").innerHTML = answer;
@@ -27,6 +23,8 @@
     <% include ../views/navbar.ejs %>
     <h1>Practicing <%= theme.title %></h1>
     <h3>Good luck!</h3>
+
+    <h3><%= theme.completed.length %> / <%= theme.cards.length + theme.completed.length %></h3>
 
     <div id="container">
         <form action=/theme/<%=theme.title%>/<%=theme.id%> method="GET">
