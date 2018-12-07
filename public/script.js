@@ -16,6 +16,8 @@ class Deck {
         let next;
         if(this.currentCard < this.cards.length){
             next = this.currentCard + 1;
+        } else{
+            next = this.currentCard;
         }
         return next;
     }

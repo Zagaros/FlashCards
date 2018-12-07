@@ -2,6 +2,7 @@ const fs = require("fs");
 const util = require("util");
 let readFile = util.promisify(fs.readFile)
 let writeFile = util.promisify(fs.writeFile)
+const {Deck, Card} = require("./public/script");
 
 class Saver {
     constructor() {
@@ -17,7 +18,13 @@ class Saver {
     async load(filnamn = "themes.txt"){
         let data = await readFile(filnamn, "utf8");
         let themes = JSON.parse(data);
-        this.decks = themes;    
+        let array = themes;
+        for(let i = 0; i < array.length;i++){
+            this.decks.push(new Deck(array[i].title, array[i].id, this))
+            for(let j = 0; j < array[i].cards.length; j++){
+                this.decks[i].cards.push(new Card(array[i].cards[j].question, array[i].cards[j].answer))
+            }
+        }  
     }
     async save(filnamn = "themes.txt"){
         console.log("hej")

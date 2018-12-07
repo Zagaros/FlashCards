@@ -16,18 +16,26 @@ async function main() {
     app.set("view engine", "ejs");
     app.use(express.urlencoded({extended: true}));
 
-    app.get("/" , (req, res) => {
-        res.render("index", {
-            Saved
-        });
+    app.all("/" , (req, res) => {
+        let newTheme = req.body.theme;
+        if(newTheme == undefined) {
+
+            res.render("index", {
+                Saved
+            });
+        } else{
+            Saved.decks.push(new Deck(newTheme, Saved.decks[Saved.decks.length - 1].id + 1, Saved));
+            let theme = Saved.decks[Saved.decks.length - 1];
+            res.render("editDeck", {theme})
+        }
 
     });
 
-    app.get("/edit/:title/:id", (req, res) => {
+    app.all("/edit/:title/:id", (req, res) => {
         let id = req.params.id;
         let theme = Saved.findById(id);
-        let question = req.query.Question;
-        let answer = req.query.Answer;
+        let question = req.body.Question;
+        let answer = req.body.Answer;
         if(question != undefined && answer != undefined){
             theme.addCard(question, answer);
         };
