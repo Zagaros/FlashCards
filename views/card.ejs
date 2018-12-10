@@ -9,18 +9,15 @@
     <script src="/public/script.js"></script>
 
     <script>
-        let answer = "<%= theme.cards[theme.currentCard].answer %>";
+        
+        <% if(theme.cards.length > 0){ %>
+            let answer = "<%= theme.cards[theme.currentCard].answer %>";
+       <% } %> 
+
         function showAnswer(){
             document.getElementById("currentCard").innerHTML = answer;
         } 
 
-        function youWin(){
-            let container = document.getElementById("container").style.display = "none";
-            let para = document.createElement("h3");
-        }
-        <% if(theme.cards[theme.currentCard] == undefined){ %>
-            youWin();
-       <% } %>
     </script>
     <style>
   
