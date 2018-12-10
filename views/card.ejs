@@ -9,7 +9,12 @@
     <script src="/public/script.js"></script>
 
     <script>
-        let answer = "<%= theme.cards[theme.currentCard].answer %>";
+        
+        <% if(theme.cards.length < 1){ %>
+            youWin();
+        <% } else { %>
+             let answer = "<%= theme.cards[theme.currentCard].answer %>";
+        <% } %>
         function showAnswer(){
             document.getElementById("currentCard").innerHTML = answer;
         } 
@@ -18,9 +23,6 @@
             document.getElementById("container").style.display = "none";
             let para = document.createElement("h3");
         }
-        <% if(theme.cards.length < 1){ %>
-            youWin();
-       <% } %>
     </script>
     <style>
   
@@ -46,7 +48,7 @@
             <input type=hidden name=answer value=right>
             <button id="rightBtn" type="submit">Right</button>
         </form>
-
+        
         <div id="currentCard"><%= theme.cards[theme.currentCard].text %></div>
         <button onclick="showAnswer()" id="showAnswerBtn">Show Answer</button>
     </div>

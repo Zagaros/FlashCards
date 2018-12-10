@@ -50,6 +50,7 @@ app.all("/theme/:title/:id", (req, res) => {
     let theme = Saved.findById(id);
     let card = req.body.valueCard;
     let answer = req.body.answer;
+    
 
     if(!theme.cards.length == 0){
         if(answer === "right"){
