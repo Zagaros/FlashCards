@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Make deck</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/public/assets/main.css" rel="stylesheet" type="text/css" />
+    <script> src="server.js" </script>
 </head>
 <body>
-    <form action="" method = "GET">
-   Title: <input type="text" name="theme"><br>
-   <input type="Submit" value="addDeck"> 
-</form>
- 
+    <form action="/" method="GET" >
+    <% %> 
+   Title: <input type="text" name="theme" value="<% this.decks %>"><br>
+   <input type="Submit" value="add Deck"> 
+    </form>
 </body>

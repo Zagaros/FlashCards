@@ -15,10 +15,10 @@
         } 
 
         function youWin(){
-            document.getElementById("container").style.display = "none";
+            let container = document.getElementById("container").style.display = "none";
             let para = document.createElement("h3");
         }
-        <% if(theme.cards.length < 1){ %>
+        <% if(theme.cards[theme.currentCard] == undefined){ %>
             youWin();
        <% } %>
     </script>
