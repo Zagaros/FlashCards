@@ -48,7 +48,7 @@ async function main() {
         let theme = Saved.findById(id);
         res.render("card", { theme });
     });
-    
+
     app.post("/theme/:title/:id", (req, res) => {
         let id = req.params.id;
         let theme = Saved.findById(id);
