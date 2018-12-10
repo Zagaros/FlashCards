@@ -27,11 +27,8 @@ class Saver {
         }  
     }
     async save(filnamn = "themes.txt"){
-        console.log("hej")
         let saveThemes = JSON.stringify(this.decks);
-        console.log({saveThemes})
         await writeFile(filnamn, saveThemes, "utf8")
-        
     }
 }
 module.exports = Saver;
