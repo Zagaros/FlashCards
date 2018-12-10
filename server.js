@@ -72,8 +72,20 @@ async function main() {
         if (theme.cards.length > 0) {
             res.render("card", { theme });
         } else {
+            theme.addProgress();
+            theme.currentCard = 0;
+            for (var i = 0; i < theme.completed.length; i++) {
+                theme.cards.push(theme.completed[i]);
+                theme.completed.splice(i, 1)
+                i--;
+            }
             res.render("win");
         }
+    });
+    app.get("/progress/:id", (req, res) => {
+        let id = req.params.id;
+        let theme = Saved.findById(id);
+        res.render("progress", { theme });
     });
 
     app.get("/theme/makeDeck", (req, res) => {

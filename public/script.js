@@ -1,5 +1,4 @@
 
-
 class Deck {
     constructor(title, id, saver) {
         Object.defineProperty(this, "saver", {
@@ -11,6 +10,22 @@ class Deck {
         this.completed = [];
         this.currentCard = 0;
         this.id = id;
+        this.progress = [];
+        this.wrongs = 0;
+    }
+
+    addProgress(){
+        let d = new Date();
+        let n = d.toISOString();
+        let d2 = new Date(Date.parse(n));
+        let date = d2.toLocaleString();
+        if(this.wrongs > this.cards.length){
+            this.wrongs = this.cards.length;
+        }
+        let right = this.cards.length - this.wrongs;
+        this.progress.push({right, questions:this.cards.length, date})
+        this.wrongs = 0;
+        this.saver.save();
     }
     nextCard(){
         let next;

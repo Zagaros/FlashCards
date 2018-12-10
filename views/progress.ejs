@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Progress</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/public/assets/main.css" rel="stylesheet" type="text/css" />
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <table>
+  <tr>
+    <th>Date</th>
+    <th>Right answers</th>
+    <th>Amount of Questions</th>
+  </tr>
+  <% for(let i = 0; i < theme.progress.length; i++) { %>
+  <tr>
+    <td><%= theme.progress[i].date %></td>
+    <td><%= theme.progress[i].right %></td>
+    <td><%= theme.progress[i].questions %></td>
+  </tr>
+<% } %>
+</table>
+</body>
