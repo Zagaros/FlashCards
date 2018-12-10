@@ -16,13 +16,16 @@
              let answer = "<%= theme.cards[theme.currentCard].answer %>";
         <% } %>
         function showAnswer(){
-            document.getElementById("currentCard").innerHTML = answer;
+            let card = document.getElementById("currentCard");
+            card.style.transform = "rotateY(360deg)";
+            card.innerHTML = answer;
         } 
 
         function youWin(){
             document.getElementById("container").style.display = "none";
             let para = document.createElement("h3");
         }
+        
     </script>
     <style>
   
@@ -32,7 +35,8 @@
     <nav id="navbar">
         <ul>
             <a href ="/"><li>Home</li></a>
-            <a href ="/progress/<%=theme.id%>"><li>Progress</li></a>
+            <a href ="/edit/<%=theme.title%>/<%=theme.id%>"><li>Edit Deck</li></a>
+            <a href ="/progress/<%=theme.title%>/<%=theme.id%>"><li>Progress</li></a>
         </ul>
     </nav>
     <h1>Practicing <%= theme.title %></h1>

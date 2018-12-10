@@ -40,7 +40,15 @@ async function main() {
             theme.addCard(question, answer);
         };
 
-        res.render("editDeck", { theme })
+        res.render("editDeck", { theme , Saved})
+    });
+
+    app.get("/remove/:id/:i", (req, res) => {
+        let id = req.params.id;
+        let i = req.params.i;
+        let theme = Saved.findById(id);
+        theme.cards.splice(i, 1);
+        res.redirect("/edit/" + theme.title + "/" + theme.id)
     });
 
     app.get("/theme/:title/:id", (req, res) => {
@@ -63,6 +71,7 @@ async function main() {
                 theme.currentCard = 0;
             }
         } else if (answer === "wrong") {
+            theme.wrongs++;
             theme.currentCard = theme.nextCard();
             if (theme.currentCard >= theme.cards.length) {
                 theme.currentCard = 0;
@@ -72,17 +81,18 @@ async function main() {
         if (theme.cards.length > 0) {
             res.render("card", { theme });
         } else {
-            theme.addProgress();
             theme.currentCard = 0;
             for (var i = 0; i < theme.completed.length; i++) {
                 theme.cards.push(theme.completed[i]);
                 theme.completed.splice(i, 1)
                 i--;
             }
+            theme.addProgress();
+            theme.wrongs = 0;
             res.render("win");
         }
     });
-    app.get("/progress/:id", (req, res) => {
+    app.get("/progress/:title/:id", (req, res) => {
         let id = req.params.id;
         let theme = Saved.findById(id);
         res.render("progress", { theme });
