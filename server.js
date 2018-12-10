@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const Saver = require("./saver");
-const {Deck, Card} = require("./public/script");
+const { Deck, Card } = require("./public/script");
 const Saved = new Saver();
 
 
@@ -9,12 +9,12 @@ const Saved = new Saver();
 async function main() {
     await Saved.load();
 
- console.log(Saved.decks[0])
+    console.log(Saved.decks[0])
     //testing
 
     //end Testing
     app.set("view engine", "ejs");
-    app.use(express.urlencoded({extended: true}));
+    app.use(express.urlencoded({ extended: true }));
 
     app.all("/" , (req, res) => {
         let newTheme = req.body.theme;
@@ -40,37 +40,41 @@ async function main() {
             theme.addCard(question, answer);
         };
 
-        res.render("editDeck", {theme})
+        res.render("editDeck", { theme })
     });
 
 
 
-app.all("/theme/:title/:id", (req, res) => {
-    let id = req.params.id;
-    let theme = Saved.findById(id);
-    let card = req.body.valueCard;
-    let answer = req.body.answer;
-    
+    app.all("/theme/:title/:id", (req, res) => {
+        let id = req.params.id;
+        let theme = Saved.findById(id);
+        let card = req.body.valueCard;
+        let answer = req.body.answer;
 
-    if(!theme.cards.length == 0){
-        if(answer === "right"){
-            theme.completed.push(theme.cards[theme.currentCard]);
-            theme.cards.splice(theme.currentCard, 1) 
-            
-            if(theme.currentCard >= theme.cards.length){
-                theme.currentCard = 0;
-            }
-        } else if(answer === "wrong"){
-            theme.currentCard = theme.nextCard();
-            if(theme.currentCard >= theme.cards.length){
-                theme.currentCard = 0;
-            }
+        if (theme.cards.length - 1 > 0 || theme.cards.length == 1) {
+            if (answer === "right") {
+                theme.completed.push(theme.cards[theme.currentCard]);
+                theme.cards.splice(theme.currentCard, 1)
+
+                if (theme.currentCard >= theme.cards.length) {
+                    theme.currentCard = 0;
+                }
+            } else if (answer === "wrong") {
+                theme.currentCard = theme.nextCard();
+                if (theme.currentCard >= theme.cards.length) {
+                    theme.currentCard = 0;
+                }
+            } 
+
+            res.render("card", { theme });
+        } else {
+            res.render("win");
         }
-    } 
-    
-    res.render("card", {theme});
-});
-app.get("/theme/makeDeck", (req, res) => {
+
+        
+    });
+
+    app.get("/theme/makeDeck", (req, res) => {
 
         res.render("makeDeck");
     });
@@ -80,7 +84,7 @@ app.get("/theme/makeDeck", (req, res) => {
         let cardId = req.query.Card;
         let deckId = req.query.deck;
         let theme = Saved.findById(deckId);
-        res.render("card.ejs", {theme})
+        res.render("card.ejs", { theme })
     });
 
     app.use('/public', express.static('public'));
