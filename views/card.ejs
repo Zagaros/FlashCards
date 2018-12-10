@@ -29,7 +29,12 @@
 </style>
 </head>
 <body>
-    <% include ../views/navbar.ejs %>
+    <nav id="navbar">
+        <ul>
+            <a href ="/"><li>Home</li></a>
+            <a href ="/progress/<%=theme.id%>"><li>Progress</li></a>
+        </ul>
+    </nav>
     <h1>Practicing <%= theme.title %></h1>
     <h3>Good luck!</h3>
 

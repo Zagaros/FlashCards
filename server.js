@@ -60,6 +60,7 @@ async function main() {
                     theme.currentCard = 0;
                 }
             } else if (answer === "wrong") {
+                theme.wrongs++;
                 theme.currentCard = theme.nextCard();
                 if (theme.currentCard >= theme.cards.length) {
                     theme.currentCard = 0;
@@ -68,10 +69,16 @@ async function main() {
 
             res.render("card", { theme });
         } else {
+            theme.addProgress();
             res.render("win");
         }
 
         
+    });
+    app.get("/progress/:id", (req, res) => {
+        let id = req.params.id;
+        let theme = Saved.findById(id);
+        res.render("progress", { theme });
     });
 
     app.get("/theme/makeDeck", (req, res) => {
