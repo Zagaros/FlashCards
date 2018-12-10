@@ -73,6 +73,12 @@ async function main() {
             res.render("card", { theme });
         } else {
             theme.addProgress();
+            theme.currentCard = 0;
+            for (var i = 0; i < theme.completed.length; i++) {
+                theme.cards.push(theme.completed[i]);
+                theme.completed.splice(i, 1)
+                i--;
+            }
             res.render("win");
         }
     });
