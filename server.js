@@ -43,35 +43,37 @@ async function main() {
         res.render("editDeck", { theme })
     });
 
-
-
-    app.all("/theme/:title/:id", (req, res) => {
+    app.get("/theme/:title/:id", (req, res) => {
+        let id = req.params.id;
+        let theme = Saved.findById(id);
+        res.render("card", { theme });
+    });
+    
+    app.post("/theme/:title/:id", (req, res) => {
         let id = req.params.id;
         let theme = Saved.findById(id);
         let card = req.body.valueCard;
         let answer = req.body.answer;
 
-        if (theme.cards.length - 1 > 0 || theme.cards.length == 1) {
-            if (answer === "right") {
-                theme.completed.push(theme.cards[theme.currentCard]);
-                theme.cards.splice(theme.currentCard, 1)
+        if (answer === "right") {
+            theme.completed.push(theme.cards[theme.currentCard]);
+            theme.cards.splice(theme.currentCard, 1)
 
-                if (theme.currentCard >= theme.cards.length) {
-                    theme.currentCard = 0;
-                }
-            } else if (answer === "wrong") {
-                theme.currentCard = theme.nextCard();
-                if (theme.currentCard >= theme.cards.length) {
-                    theme.currentCard = 0;
-                }
-            } 
+            if (theme.currentCard >= theme.cards.length) {
+                theme.currentCard = 0;
+            }
+        } else if (answer === "wrong") {
+            theme.currentCard = theme.nextCard();
+            if (theme.currentCard >= theme.cards.length) {
+                theme.currentCard = 0;
+            }
+        } 
 
+        if (theme.cards.length > 0) {
             res.render("card", { theme });
         } else {
             res.render("win");
         }
-
-        
     });
 
     app.get("/theme/makeDeck", (req, res) => {
