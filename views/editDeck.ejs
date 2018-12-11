@@ -16,5 +16,11 @@
     <br>
     Done with adding questions? <br> Press the link <br>
     <a href="/">Back to front page</a>
+    
+    <% for(let i = 0; i < theme.cards.length; i++) { %>
+        <div><b>Question:</b> <%= theme.cards[i].question %>, <b>Answer:</b> <%= theme.cards[i].answer %> <a href="/remove/<%=theme.id%>/<%=i%>"style="color:red; text-decoration:none">X</a></div>
+        <br>
+   <% } %>
+  <b> Amount of questions</b>: <%= theme.cards.length %>
 </body>
 

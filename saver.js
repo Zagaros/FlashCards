@@ -24,6 +24,9 @@ class Saver {
             for(let j = 0; j < array[i].cards.length; j++){
                 this.decks[i].cards.push(new Card(array[i].cards[j].question, array[i].cards[j].answer))
             }
+            for(let k = 0; k < array[i].progress.length; k++){
+                this.decks[i].progress.push(array[i].progress[k])
+            }
         }  
     }
     async save(filnamn = "themes.txt"){
