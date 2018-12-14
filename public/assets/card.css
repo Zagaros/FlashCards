@@ -1,21 +1,63 @@
+*{
+    transition: all 500ms ease-in-out;
+    font-family: sans-serif;
+    margin: 0;
+}
+
 h1, h3 {
     text-align: center;
 }
-*{
-    transition: all 250ms ease-in-out;
+
+#headers{
+    margin: 50px 0 50px 0;
 }
 
 #wrongBtn {
     float:left;
+    width:100px;
+    height: 50px;
+    order: 3;
+    margin-right: 20px;
 }
 
-rightBtn {
-    float: right;
+#rightBtn {
+    width: 100px;
+    height: 50px;
+    order: 1;
+    margin: auto
 }
 
 #currentCard {
-    width: 400px;
-    height: 400px;
-    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
     background:lightblue;
+    order: 0;
+    display: flex;
+}
+
+#text {
+    margin: auto;
+    width: 75%;
+    text-align: center;
+    font-size: 30px;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+#showAnswerBtn {
+    margin: 25px 0 25px 0;
+    height: 50px;
+    width: 150px;
+}
+
+#showAnswerContainer {
+    text-align: center;
 }
