@@ -8,19 +8,19 @@
     <link href="/public/assets/main.css" rel="stylesheet" type="text/css" />
     <style>
         table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
         }
 
         td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
         }
 
         tr:nth-child(even) {
-        background-color: #dddddd;
+            background-color: #dddddd;
         }
     </style>
 </head>
@@ -35,7 +35,13 @@
   <% for(let i = 0; i < theme.progress.length; i++) { %>
   <tr>
     <td><%= theme.progress[i].date %></td>
-    <td><%= theme.progress[i].right %></td>
+    <% let r = Math.floor(theme.progress[i].right/theme.progress[i].questions*100) %>
+    <% let c = "lightgreen" %>
+    <% if(r < 75){ %>
+    <%  c = "red"%>
+    <% } %>
+    <td style="color:black;"><div style="width:<%=r%>%; background:<%= c %>;"> <%= theme.progress[i].right %> <br><%= r%>% </div></td>
+    
     <td><%= theme.progress[i].questions %></td>
   </tr>
 <% } %>

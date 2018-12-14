@@ -8,25 +8,19 @@ const Saved = new Saver();
 
 async function main() {
     await Saved.load();
-
-    console.log(Saved.decks[0])
-    //testing
-
-    //end Testing
     app.set("view engine", "ejs");
     app.use(express.urlencoded({ extended: true }));
 
-    app.all("/" , (req, res) => {
+    app.all("/", (req, res) => {
         let newTheme = req.body.theme;
-        if(newTheme == undefined) {
-
+        if (newTheme == undefined) {
             res.render("index", {
                 Saved
             });
-        } else{
+        } else {
             Saved.decks.push(new Deck(newTheme, Saved.decks[Saved.decks.length - 1].id + 1, Saved));
             let theme = Saved.decks[Saved.decks.length - 1];
-            res.render("editDeck", {theme})
+            res.render("editDeck", { theme })
         }
 
     });
@@ -36,11 +30,11 @@ async function main() {
         let theme = Saved.findById(id);
         let question = req.body.Question;
         let answer = req.body.Answer;
-        if(question != undefined && answer != undefined){
+        if (question != undefined && answer != undefined) {
             theme.addCard(question, answer);
         };
 
-        res.render("editDeck", { theme , Saved})
+        res.render("editDeck", { theme, Saved })
     });
 
     app.get("/remove/:id/:i", (req, res) => {
@@ -56,12 +50,13 @@ async function main() {
         let theme = Saved.findById(id);
         res.render("card", { theme });
     });
-    
+
     app.post("/theme/:title/:id", (req, res) => {
         let id = req.params.id;
         let theme = Saved.findById(id);
         let card = req.body.valueCard;
         let answer = req.body.answer;
+        theme.shuffleCards();
 
         if (answer === "right") {
             theme.completed.push(theme.cards[theme.currentCard]);
@@ -76,7 +71,7 @@ async function main() {
             if (theme.currentCard >= theme.cards.length) {
                 theme.currentCard = 0;
             }
-        } 
+        }
 
         if (theme.cards.length > 0) {
             res.render("card", { theme });

@@ -7,13 +7,13 @@ class Deck {
         });
         this.title = title;
         this.cards = [];
+        this.cardslength = this.cards.length;
         this.completed = [];
         this.currentCard = 0;
         this.id = id;
         this.progress = [];
         this.wrongs = 0;
     }
-
     addProgress(){
         let d = new Date();
         let n = d.toISOString();
@@ -64,12 +64,12 @@ class Deck {
         }
         this.completed = [];
     }
-    shuffleCards(array){
-        for (let i = array.length - 1; i > 0; i--) {
+    shuffleCards(){
+        for (let i = this.cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
         }
-        return array;
+        return this.cards;
     }
 }
 class Card {
