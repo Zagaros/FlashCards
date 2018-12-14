@@ -9,10 +9,11 @@
     <link href="/public/assets/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Practice your brain</h1>
     <% for(let i = 0; i < Saved.decks.length; i++){ %>
         <% let title = Saved.decks[i].title %>
         <% let id = Saved.decks[i].id %>
-        <a href=theme/<%= title %>/<%=id%>><li><%=  title %></li></a>
+        <a href="theme/<%= title %>/<%= id %>"><li><%= title %></li></a>
     <% } %>
+    <a href ="/theme/makedeck">Add new deck</a>
 </body>

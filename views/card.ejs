@@ -9,12 +9,8 @@
     <script src="/public/script.js"></script>
 
     <script>
+        let answer = "<%= theme.cards[theme.currentCard].answer %>";
         
-        <% if(theme.cards.length < 1){ %>
-            youWin();
-        <% } else { %>
-             let answer = "<%= theme.cards[theme.currentCard].answer %>";
-        <% } %>
         function showAnswer(){
             let card = document.getElementById("currentCard");
             card.style.transform = "rotateY(360deg)";
@@ -58,7 +54,9 @@
             <button id="rightBtn" type="submit">Right</button>
         </form>
         
-        <div id="currentCard"><%= theme.cards[theme.currentCard].text %></div>
+        <div id="currentCard">
+            <p><%= theme.cards[theme.currentCard].text %></p>
+        </div>
         <button onclick="showAnswer()" id="showAnswerBtn">Show Answer</button>
     </div>
 </body>
