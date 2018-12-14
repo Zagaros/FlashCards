@@ -18,9 +18,22 @@
     <a href="/">Back to front page</a>
     
     <% for(let i = 0; i < theme.cards.length; i++) { %>
-        <div><b>Question:</b> <%= theme.cards[i].question %>, <b>Answer:</b> <%= theme.cards[i].answer %> <a href="/remove/<%=theme.id%>/<%=i%>"style="color:red; text-decoration:none">X</a></div>
+        <div><b>Question:</b> <%= theme.cards[i].question %>, <b>Answer:</b> <%= theme.cards[i].answer %> <a class="delete-link" href="/remove/<%=theme.id%>/<%=i%>" style="color:red; text-decoration:none">X</a></div>
         <br>
    <% } %>
   <b> Amount of questions</b>: <%= theme.cards.length %>
+
+  <form id="delete-form" method="post">
+  </form>
+  <script>
+    const form = document.getElementById("delete-form");
+    document.querySelectorAll(".delete-link").forEach(link => {
+        link.addEventListener("click", evt => {
+            evt.preventDefault();
+            form.action = evt.target.href;
+            form.submit();
+        })
+    })
+  </script>
 </body>
 

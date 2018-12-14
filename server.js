@@ -37,7 +37,7 @@ async function main() {
         res.render("editDeck", { theme, Saved })
     });
 
-    app.get("/remove/:id/:i", (req, res) => {
+    app.post("/remove/:id/:i", (req, res) => {
         let id = req.params.id;
         let i = req.params.i;
         let theme = Saved.findById(id);
