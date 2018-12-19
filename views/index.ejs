@@ -6,14 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/public/assets/main.css" rel="stylesheet" type="text/css" />
+    <link href="/public/assets/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <h1>Practice your brain</h1>
-    <% for(let i = 0; i < Saved.decks.length; i++){ %>
-        <% let title = Saved.decks[i].title %>
-        <% let id = Saved.decks[i].id %>
-        <a href="theme/<%= title %>/<%= id %>"><li><%= title %></li></a>
-    <% } %>
-    <a href ="/theme/makedeck">Add new deck</a>
+    <div id="container">
+        <ul>
+            <% for(let i = 0; i < Saved.decks.length; i++){ %>
+                <% let title = Saved.decks[i].title %>
+                <% let id = Saved.decks[i].id %>
+                <a href="theme/<%= title %>/<%= id %>"><li><%= title %></li></a>
+            <% } %>
+            <a id="addTheme" href ="/theme/makedeck"><li>+</li></a>
+        </ul>
+    </div>
 </body>
