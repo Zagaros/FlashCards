@@ -56,7 +56,8 @@ async function main() {
         let theme = Saved.findById(id);
         let card = req.body.valueCard;
         let answer = req.body.answer;
-        theme.shuffleCards();
+        
+        
 
         if (answer === "right") {
             theme.completed.push(theme.cards[theme.currentCard]);
@@ -82,10 +83,11 @@ async function main() {
                 theme.completed.splice(i, 1)
                 i--;
             }
-            theme.addProgress();
+            theme.addProgress();           
             theme.wrongs = 0;
-            res.render("win");
+            res.redirect("/progress/" + theme.title + "/" + theme.id);
         }
+        theme.shuffleCards();
     });
     app.get("/progress/:title/:id", (req, res) => {
         let id = req.params.id;
@@ -94,7 +96,6 @@ async function main() {
     });
 
     app.get("/theme/makeDeck", (req, res) => {
-
         res.render("makeDeck");
     });
 
@@ -104,6 +105,13 @@ async function main() {
         let deckId = req.query.deck;
         let theme = Saved.findById(deckId);
         res.render("card.ejs", { theme })
+    });
+
+    app.get("/*/", (req, res) => {
+        res.render("index", {
+            Saved
+        });
+
     });
 
     app.use('/public', express.static('public'));

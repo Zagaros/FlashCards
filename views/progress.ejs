@@ -32,7 +32,7 @@
     <th>Right answers</th>
     <th>Amount of Questions</th>
   </tr>
-  <% for(let i = 0; i < theme.progress.length; i++) { %>
+  <% for(let i = theme.progress.length - 1; i >= 0; i--) { %>
   <tr>
     <td><%= theme.progress[i].date %></td>
     <% let r = Math.floor(theme.progress[i].right/theme.progress[i].questions*100) %>
