@@ -10,16 +10,14 @@
 </head>
 <body>
     <h1>Practice your brain</h1>
-    <div id="wrapper">
-        <div id="container">
-            <ul>
-                <% for(let i = 0; i < Saved.decks.length; i++){ %>
-                    <% let title = Saved.decks[i].title %>
-                    <% let id = Saved.decks[i].id %>
-                    <a href="theme/<%= title %>/<%= id %>"><li><%= title %></li></a>
-                <% } %>
-                <a id="addTheme" href ="/theme/makedeck"><li>+</li></a>
-            </ul>
-        </div>
+    <div id="container">
+        <ul>
+            <% for(let i = 0; i < Saved.decks.length; i++){ %>
+                <% let title = Saved.decks[i].title %>
+                <% let id = Saved.decks[i].id %>
+                <a href="theme/<%= title %>/<%= id %>"><li><%= title %></li></a>
+            <% } %>
+            <a id="addTheme" href ="/theme/makedeck"><li>+</li></a>
+        </ul>
     </div>
 </body>
