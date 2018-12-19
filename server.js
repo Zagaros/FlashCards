@@ -17,7 +17,8 @@ async function main() {
             res.render("index", {
                 Saved
             });
-        } else {
+        } else if(newTheme != ""){
+
             Saved.decks.push(new Deck(newTheme, Saved.decks[Saved.decks.length - 1].id + 1, Saved));
             let theme = Saved.decks[Saved.decks.length - 1];
             res.render("editDeck", { theme })
@@ -46,8 +47,12 @@ async function main() {
     });
 
     app.get("/theme/:title/:id", (req, res) => {
+
         let id = req.params.id;
         let theme = Saved.findById(id);
+        if(theme.cards[theme.currentCard] == undefined){
+            res.redirect("/edit/" + theme.title + "/" + theme.id);
+        }
         res.render("card", { theme });
     });
 
@@ -107,12 +112,7 @@ async function main() {
         res.render("card.ejs", { theme })
     });
 
-    app.get("/*/", (req, res) => {
-        res.render("index", {
-            Saved
-        });
 
-    });
 
     app.use('/public', express.static('public'));
     app.listen(3000, () => console.log("listening on port 3000"));

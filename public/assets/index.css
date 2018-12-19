@@ -46,6 +46,7 @@ ul li {
 ul li:hover {
     background: #6a8ec9;
     color: white;
+    transform: scale(1.05);
 }
 
 a {

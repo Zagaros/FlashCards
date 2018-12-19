@@ -23,7 +23,7 @@ class Deck {
             this.wrongs = this.cards.length;
         }
         let right = this.cards.length - this.wrongs;
-        this.progress.push({right, questions:this.cards.length, date, time:this.getTime()})
+        this.progress.push({right, questions:this.cards.length, date})
         this.wrongs = 0;
         this.saver.save();
     }

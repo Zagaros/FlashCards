@@ -29,7 +29,7 @@
     const form = document.getElementById("delete-form");
     document.querySelectorAll(".delete-link").forEach(link => {
         link.addEventListener("click", evt => {
-            evt.preventDefault();
+            evt.preventDefault();   
             form.action = evt.target.href;
             form.submit();
         })
