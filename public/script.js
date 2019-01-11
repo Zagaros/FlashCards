@@ -78,18 +78,17 @@ class Card {
         this.answer = answer;
         this.text = this.question;
 
-        this.shouldShowAnswer = false;
+        this.shouldShowAnswer = true;
     }
     showQuestion(){
-        if(this.shouldShowAnswer){
-            this.text = this.answer;
-        }
-        return this.text;
+        return this.question;
     }
     
     showAnswer(){
+
         let cardElement = document.getElementById("currentCard");
-        cardElement.innerHTML = this.answer;
+        cardElement.innerHTML = this.answer
+       
     }
 }
 

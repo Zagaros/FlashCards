@@ -15,7 +15,11 @@
             <% for(let i = 0; i < Saved.decks.length; i++){ %>
                 <% let title = Saved.decks[i].title %>
                 <% let id = Saved.decks[i].id %>
+                <%if(Saved.decks[i].cards[Saved.decks[i].currentCard] == undefined){ %>
+                <a href="theme/<%= title %>/<%= id %>"><li style="background:grey"><%= title %></li></a>
+               <% } else{ %>
                 <a href="theme/<%= title %>/<%= id %>"><li><%= title %></li></a>
+             <%  } %>
             <% } %>
             <a id="addTheme" href ="/theme/makedeck"><li>+</li></a>
         </ul>

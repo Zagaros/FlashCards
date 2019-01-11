@@ -12,12 +12,27 @@
 
     <script>
         let answer = "<%= theme.cards[theme.currentCard].answer %>";
+        let question = "<%= theme.cards[theme.currentCard].question %>";
+        let showans = true;
         
         function showAnswer(){
             let card = document.getElementById("currentCard");
-            card.style.transform = "rotateY(360deg)";
+            
             let text = document.getElementById("text");
-            text.innerHTML = answer;
+            
+            if(showans){
+                text.innerHTML = answer;
+                showans = false;
+                card.style.transform = "rotateY(180deg)";
+                text.style.transform = "rotateY(-180deg)";
+            } else{
+                text.innerHTML = question;
+                showans = true;
+                card.style.transform = "rotateY(0deg)";
+                text.style.transform = "rotateY(0deg)";
+            }
+          
+           
         } 
         
 
