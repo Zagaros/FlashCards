@@ -21,6 +21,7 @@ h1, h3 {
     border-radius: 5px;
     background: #494f51;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #wrongBtn {
@@ -71,12 +72,16 @@ h1, h3 {
     align-items: baseline;
 }
 
+#showAnswerContainer {
+    text-align: center;
+}
+
 #showAnswerBtn {
     margin: 25px 0 25px 0;
     height: 50px;
     width: 150px;
 }
 
-#showAnswerContainer {
-    text-align: center;
+#showAnswerBtn:hover {
+    background: lightblue;
 }
