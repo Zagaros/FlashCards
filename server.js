@@ -5,20 +5,25 @@ const { Deck, Card } = require("./public/script");
 const Saved = new Saver();
 
 
-
+//Vi använer oss av async för att datorn ska kunna få informationen innan den försöker köra all kod.
 async function main() {
+    //Väntar på all information
     await Saved.load();
     app.set("view engine", "ejs");
     app.use(express.urlencoded({ extended: true }));
 
+    //alla urls som bara innerhåller / kommer att komma hit.
     app.all("/", (req, res) => {
+        //beroende på om man har lagt till ett nytt tema eller inte så kommer annorlunda saker hända.
         let newTheme = req.body.theme;
         if (newTheme == undefined) {
+            //här har man inte lagt till ett nytt tema så vi visar alla teman vi har.
             res.render("index", {
                 Saved
             });
         } else if(newTheme != ""){
-
+            //När du har lagt till ett tema så lägger vi till det på Saved och sen skickar vi dig till editdeck på just de tema
+            //du la till.
             Saved.decks.push(new Deck(newTheme, Saved.decks[Saved.decks.length - 1].id + 1, Saved));
             let theme = Saved.decks[Saved.decks.length - 1];
             res.render("editDeck", { theme })
@@ -31,6 +36,8 @@ async function main() {
         let theme = Saved.findById(id);
         let question = req.body.Question;
         let answer = req.body.Answer;
+        //här kollar vi om du har försökt att lägga till en fråga än. om du har det så kommer vi lägga till det i temat.
+        //annars så visar vi bara alla fråger.
         if (question != undefined && answer != undefined && question != "" && answer != "") {
             theme.addCard(question, answer);
         };
@@ -38,7 +45,10 @@ async function main() {
         res.render("editDeck", { theme, Saved })
     });
 
+    
     app.post("/remove/:id/:i", (req, res) => {
+        //här tar vi bort fråger från temat. om man tar bort en fråga så redirectas man tillbaka till edit fast frågan kommer vara borta
+        //från vårt JSON fil.
         let id = req.params.id;
         let i = req.params.i;
         let theme = Saved.findById(id);
@@ -50,8 +60,9 @@ async function main() {
 
         let id = req.params.id;
         let theme = Saved.findById(id);
+        //här kollar vi om temat har några fråger, om det inte har det så redirectar vi den till edit.
         if(theme.cards[theme.currentCard] == undefined){
-            res.redirect("/edit/" + theme.title + "/" + theme.id);
+            res.render("editDeck", {theme});
         }
         res.render("card", { theme });
     });
@@ -60,9 +71,7 @@ async function main() {
         let id = req.params.id;
         let theme = Saved.findById(id);
         let card = req.body.valueCard;
-        let answer = req.body.answer;
-        
-        
+        let answer = req.body.answer;  
 
         if (answer === "right") {
             theme.completed.push(theme.cards[theme.currentCard]);
