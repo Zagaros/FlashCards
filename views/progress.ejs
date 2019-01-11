@@ -25,6 +25,13 @@
     </style>
 </head>
 <body>
+    <nav id="navbar">
+        <ul>
+            <a href ="/"><li>Home</li></a>
+            <a href ="/edit/<%=theme.title%>/<%=theme.id%>"><li>Edit Deck</li></a>
+            <a href ="/progress/<%=theme.title%>/<%=theme.id%>"><li>Progress</li></a>
+        </ul>
+    </nav>
 <h3><%= theme.title %></h3>
     <table>
   <tr>

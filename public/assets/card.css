@@ -1,39 +1,11 @@
 *{
     transition: all 500ms ease-in-out;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     background: #bcbcbc
 }
 
-a{
-    text-decoration: none;
-}
-
-#navbar {
-    width: 100%;
-    background: #4f545b;;
-}
-#navbar ul{
-    display: flex;
-    list-style: none;
-    width: 33%;
-    background: #4f545b;;
-}
-
-#navbar ul li {
-    padding: 1.2em;
-    background: #4f545b;;
-    color: white;
-    transition: 0.3s;
-}
-
-#navbar ul li:hover {
-    background: #444444;
-}
 
 h1, h3 {
     text-align: center;
