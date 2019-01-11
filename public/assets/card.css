@@ -1,39 +1,11 @@
 *{
     transition: all 500ms ease-in-out;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     background: #bcbcbc
 }
 
-a{
-    text-decoration: none;
-}
-
-#navbar {
-    width: 100%;
-    background: #4f545b;;
-}
-#navbar ul{
-    display: flex;
-    list-style: none;
-    width: 33%;
-    background: #4f545b;;
-}
-
-#navbar ul li {
-    padding: 1.2em;
-    background: #4f545b;;
-    color: white;
-    transition: 0.3s;
-}
-
-#navbar ul li:hover {
-    background: #444444;
-}
 
 h1, h3 {
     text-align: center;
@@ -49,6 +21,7 @@ h1, h3 {
     border-radius: 5px;
     background: #494f51;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #wrongBtn {
@@ -99,12 +72,16 @@ h1, h3 {
     align-items: baseline;
 }
 
+#showAnswerContainer {
+    text-align: center;
+}
+
 #showAnswerBtn {
     margin: 25px 0 25px 0;
     height: 50px;
     width: 150px;
 }
 
-#showAnswerContainer {
-    text-align: center;
+#showAnswerBtn:hover {
+    background: lightblue;
 }
