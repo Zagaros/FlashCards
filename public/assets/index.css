@@ -57,3 +57,11 @@ a {
 #addTheme {
     font-size: 2em;
 }
+
+.addTheme {
+    background: darkcyan
+}
+
+.addTheme:hover {
+    background: lightseagreen
+}
