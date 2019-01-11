@@ -1,10 +1,16 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 10;
+    padding: 10;
     font-family: sans-serif;
+    text-align: center;
+}
+
+body {
+        background:#bcbcbc 
 }
 a{
     text-decoration: none;
+    color: white
 }
 
 #navbar {
