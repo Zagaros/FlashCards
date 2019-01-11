@@ -2,6 +2,37 @@
     transition: all 500ms ease-in-out;
     font-family: sans-serif;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #bcbcbc
+}
+
+a{
+    text-decoration: none;
+}
+
+#navbar {
+    width: 100%;
+    background: #4f545b;;
+}
+#navbar ul{
+    display: flex;
+    list-style: none;
+    width: 33%;
+    background: #4f545b;;
+}
+
+#navbar ul li {
+    padding: 1.2em;
+    background: #4f545b;;
+    color: white;
+    transition: 0.3s;
+}
+
+#navbar ul li:hover {
+    background: #444444;
 }
 
 h1, h3 {
@@ -12,6 +43,14 @@ h1, h3 {
     margin: 50px 0 50px 0;
 }
 
+.button {
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background: #494f51;
+    transition: 0.3s;
+}
+
 #wrongBtn {
     float:left;
     width:100px;
@@ -20,19 +59,27 @@ h1, h3 {
     margin-right: 20px;
 }
 
+#wrongBtn:hover {
+    background: red;
+}
+
 #rightBtn {
     width: 100px;
     height: 50px;
     order: 1;
-    margin: auto
+    margin: auto;
+}
+
+#rightBtn:hover {
+    background: green;
 }
 
 #currentCard {
     width: 500px;
     height: 500px;
     border: 2px solid black;
-    border-radius: 10px;
-    background:lightblue;
+    border-radius: 7px;
+    background: #68a2ba;
     order: 0;
     display: flex;
 }
