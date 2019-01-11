@@ -31,7 +31,7 @@ async function main() {
         let theme = Saved.findById(id);
         let question = req.body.Question;
         let answer = req.body.Answer;
-        if (question != undefined && answer != undefined) {
+        if (question != undefined && answer != undefined && question != "" && answer != "") {
             theme.addCard(question, answer);
         };
 
@@ -115,6 +115,12 @@ async function main() {
 
 
     app.use('/public', express.static('public'));
+    
+    app.get("/*/" , (req,res) => {
+        res.render("index", {
+            Saved
+        }); 
+    });
     app.listen(3000, () => console.log("listening on port 3000"));
 }
 main();
