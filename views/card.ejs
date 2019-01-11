@@ -14,22 +14,34 @@
         let answer = "<%= theme.cards[theme.currentCard].answer %>";
         let question = "<%= theme.cards[theme.currentCard].question %>";
         let showans = true;
+        let animation = false;
         
+        function rotateText(text, e){
+            animation = true;
+            setTimeout(function(){
+                e.innerHTML = text;
+            },250);
+             setTimeout(function(){
+                animation = false;
+            },500);
+        }
         function showAnswer(){
-            let card = document.getElementById("currentCard");
-            
-            let text = document.getElementById("text");
-            
-            if(showans){
-                text.innerHTML = answer;
-                showans = false;
-                card.style.transform = "rotateY(180deg)";
-                text.style.transform = "rotateY(-180deg)";
-            } else{
-                text.innerHTML = question;
-                showans = true;
-                card.style.transform = "rotateY(0deg)";
-                text.style.transform = "rotateY(0deg)";
+            if(animation == false){
+                let card = document.getElementById("currentCard");
+                
+                let text = document.getElementById("text");
+                
+                if(showans){
+                    showans = false;
+                    card.style.transform = "rotateY(180deg)";
+                    text.style.transform = "rotateY(-180deg)";
+                    rotateText(answer, text)
+                } else{              
+                    showans = true;
+                    card.style.transform = "rotateY(0deg)";
+                    text.style.transform = "rotateY(0deg)";
+                    rotateText(question, text);
+                }
             }
           
            
@@ -76,7 +88,7 @@
         
     </div>
     <div id="showAnswerContainer">
-        <button onclick="showAnswer()" id="showAnswerBtn">Show Answer</button>
+        <button class="button" onclick="showAnswer()" id="showAnswerBtn">Show Answer</button>
     </div>
 </body>
 </html>
